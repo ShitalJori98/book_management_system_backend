@@ -2,6 +2,8 @@ package com.api.book.controller;
 
 import com.api.book.entities.Book;
 import com.api.book.services.BookService;
+import com.api.book.utilities.GlobalResources;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +17,7 @@ import java.util.List;
 
 @RestController
 public class BookController {
-
-
+    private Logger logger = GlobalResources.getLogger(BookController.class);
 
     @Autowired
     private BookService bookService;
@@ -25,6 +26,9 @@ public class BookController {
     //get all book handler
     @GetMapping("/books")
     public List<Book> getBook(){
+        /*String methodName = "getBook()";*/
+        /*logger.info(methodName + "called");*/   //info is default
+        logger.trace("getBook method call");     // for trace we need to define it in property file
         return this.bookService.getAllBooks();
     }
 

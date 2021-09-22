@@ -2,6 +2,8 @@ package com.api.book.services;
 
 import com.api.book.dao.BookRepository;
 import com.api.book.entities.Book;
+import com.api.book.utilities.GlobalResources;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import java.util.List;
 @Service
 public class BookService {
 
+    private Logger logger = GlobalResources.getLogger(BookService.class);
 
     @Autowired
     private BookRepository bookRepository;
@@ -19,6 +22,9 @@ public class BookService {
 
     //get all books
     public List<Book>getAllBooks(){
+        String methodName = "getAllBooks()";
+        logger.info(methodName + "called");
+
         List<Book> list = (List<Book>) this.bookRepository.findAll();
         return list;
     }
